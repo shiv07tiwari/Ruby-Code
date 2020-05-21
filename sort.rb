@@ -34,5 +34,60 @@ def insertion_sort(array)
     array
   end
 
+
+def merge(arr, left, mid, right)
+    sizeLeft = mid - left + 1
+    sizeRight  = right - mid
+    leftArr = Array.new(sizeLeft)
+    rightArr = Array.new(sizeRight)
+
+    (0..sizeLeft-1).each do |i|
+        leftArr[i] = arr[left + i]
+    end
+    (0..sizeRight-1).each do |i|
+        rightArr[i] = arr[mid + 1 + i]
+    end
+    
+    i = 0
+    j = 0
+    k = left
+
+    loop do
+        if leftArr[i] <= rightArr[j]
+            arr[k] = leftArr[i]
+            i += 1
+        else
+            arr[k] = rightArr[j]
+            j += 1
+        end
+        k += 1
+        break if (i >= sizeLeft || j >= sizeRight)
+    end
+    
+    (i..sizeLeft-1).each do |p|
+        arr[k] = leftArr[p]
+        p += 1
+        k += 1
+    end
+    (j..sizeRight-1).each do |p|
+        arr[k] = rightArr[p]
+        p += 1
+        k += 1
+    end
+end
+
+def merge_sort(array, left, right)
+    if left < right
+        mid = left + (right - left)/2
+
+        merge_sort(array, left, mid)
+        merge_sort(array, mid + 1, right)
+        merge(array, left, mid, right)
+    end
+    array
+end
+
+
 p bubble_sort([3,1,5,2,8,6,4,7])
 p insertion_sort([3,1,5,2,8,6,4,7])
+p merge_sort([3,1,5,2,8,6,4,7], 0, 7)
