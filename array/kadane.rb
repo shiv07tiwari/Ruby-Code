@@ -6,6 +6,7 @@ class Integer
     MIN = -MAX - 1
 end
 
+# Kadane Algorithm to find largest subarray
 def largest_subarray(*array)
     max_ending_now = 0
     max_till_now = Integer::MIN

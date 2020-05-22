@@ -87,7 +87,25 @@ def merge_sort(array, left, right)
     array
 end
 
+def selection_sort (array)
+    n = array.length
+    n.times do |i|
+        min = i
+        (i+1..(n-1)).each do |j|
+            if array[j] < array[min]
+                min = j
+            end
+        end
+        array[min], array[i] = array[i], array[min]
+    end
+    array
+end
+
 
 p bubble_sort([3,1,5,2,8,6,4,7])
 p insertion_sort([3,1,5,2,8,6,4,7])
 p merge_sort([3,1,5,2,8,6,4,7], 0, 7)
+p selection_sort([3,1,5,2,8,6,4,7])
+
+
+
